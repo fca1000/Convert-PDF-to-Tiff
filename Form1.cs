@@ -14,6 +14,13 @@ namespace PdfConverter
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LblLastP.Text = Settings.Default.NumLote.ToString();
+            LblLastP.Update();
+            Application.DoEvents();
+        }
+
         public void CriarPasta(string outdir)
         {
             if (!Directory.Exists(outdir))
@@ -52,8 +59,12 @@ namespace PdfConverter
 
                     LblQtProc.Text = Convert.ToString(i + 1);
                     LblQtProc.Update();
-                    Application.DoEvents();
+
+                    LblLastP.Text = Settings.Default.NumLote.ToString();
+                    LblLastP.Update();
+
                     Settings.Default.NumLote += 1;
+                    Application.DoEvents();
                 }
             }
             catch (Exception er)
@@ -91,5 +102,18 @@ namespace PdfConverter
                 Application.DoEvents();
             }
         }
+
+        private void LblLastP_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default.NumLote = Convert.ToInt32(LblLastP.Text);
+            Settings.Default.Save();
+        }
+
+        private void LblLastP_Enter(object sender, EventArgs e)
+        {
+            
+        }
+
+        
     }
 }
