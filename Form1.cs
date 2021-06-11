@@ -32,7 +32,7 @@ namespace PdfConverter
                     FileInfo fileInfo = new FileInfo(infile);
 
                     string outdir = fileInfo.DirectoryName + @"\output";
-                    string structured_outdir = outdir + @"\" + Settings.Default.NumLote.ToString().PadLeft(8, '0');
+                    string structured_outdir = outdir + @"\" + "A_" + Settings.Default.NumLote.ToString().PadLeft(8, '0');
                     string structured_outfile = structured_outdir + @"\" + fileInfo.Name.ToString().Replace(".pdf", ".tif").Replace(".jpg",".tif").Replace(".png", ".tif");
 
                     CriarPasta(outdir);
